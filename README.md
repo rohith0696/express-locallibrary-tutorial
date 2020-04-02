@@ -14,6 +14,6 @@ MVC is an application design model comprised of three interconnected parts. They
 1. Leverage existing features provided by ASP.NET, JSP, Django, etc.
 1. Supports for Test Driven Development (TDD)
 
-## Refernces
+## References
 - https://techterms.com/definition/mvc
 - https://www.guru99.com/mvc-tutorial.html
