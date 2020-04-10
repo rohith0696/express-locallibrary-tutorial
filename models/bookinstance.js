@@ -1,8 +1,8 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var BookInstanceSchema = new Schema(
+let BookInstanceSchema = new Schema(
   {
     book: { type: Schema.Types.ObjectId, ref: 'Book', required: true }, //reference to the associated book
     imprint: {type: String, required: true},
