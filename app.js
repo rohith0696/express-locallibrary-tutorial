@@ -12,6 +12,7 @@ let catalogRouter = require('./routes/catalog');  //Import routes for "catalog" 
 
 let app = express();
 dotenv.config({ path: '.env' })
+const { check, validationResult } = require('express-validator');
 
 //Set up mongoose connection
 let mongoose = require('mongoose');
