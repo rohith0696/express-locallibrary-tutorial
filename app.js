@@ -3,11 +3,15 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
+const dotenv = require('dotenv');
+
 
 let indexRouter = require('./routes/index');
 let usersRouter = require('./routes/users');
+let catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
 
 let app = express();
+dotenv.config({ path: '.env' })
 
 //Set up mongoose connection
 let mongoose = require('mongoose');
@@ -16,6 +20,7 @@ mongoose.connect(mongoDB, { useNewUrlParser: true,useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+dev_db_url = process.env.ATLAS_URI
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -29,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/catalog', catalogRouter);  // Add catalog routes to middleware chain.
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
