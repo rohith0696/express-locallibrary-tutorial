@@ -1,3 +1,4 @@
+const debug = require('debug')('author');
 const Author = require('../models/author');
 const async = require('async');
 const Book = require('../models/book');
@@ -106,9 +107,19 @@ exports.author_delete_post = function(req, res) {
     res.send('NOT IMPLEMENTED: Author delete POST');
 };
 
-// Display Author update form on GET.
-exports.author_update_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Author update GET');
+// Display Author update form on GET
+exports.author_update_get = function(req, res, next) {   
+    
+    req.sanitize('id').escape().trim();
+    Author.findById(req.params.id, function(err, author) {
+        if (err) {
+            debug('update error:' + err);
+            return next(err);
+        }
+        //On success
+        res.render('author_form', { title: 'Update Author', author: author });
+    });
+
 };
 
 // Handle Author update on POST.
